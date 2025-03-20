@@ -1,0 +1,158 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: #fff7ed;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 111px;
+}
+
+header a {
+  text-decoration: none;
+  margin: 13px;
+}
+
+header a:hover {
+  color: #161616;
+  text-decoration: underline;
+}
+
+header > a.site-logo {
+  color: #000000;
+
+  font-weight: 900;
+  font-size: 25.35px;
+  line-height: 40.27px;
+}
+
+nav > a {
+  color: #4d4d4d;
+
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22.92px;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #252525;
+  color: #aaaaaa;
+  height: 74px;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 22.92px;
+}
+
+/* Home Page */
+div.home-container {
+  color: #ffffff;
+  background: url(./assets/images/homeBackground.png) no-repeat center
+    center/cover;
+  min-height: 390px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 65px 25px;
+}
+
+div.home-container > h2 {
+  margin-bottom: 22px;
+
+  font-weight: 800;
+  font-size: 36px;
+  line-height: 42px;
+}
+
+div.home-container > p {
+  margin-bottom: 50px;
+
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+div.home-container > a {
+  text-align: center;
+  color: #ffffff;
+  background: #ff8c38;
+  text-decoration: none;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+
+  font-weight: 700;
+  font-size: 15.95px;
+  line-height: 31.66px;
+  transition: transform 0.2s ease-in-out;
+}
+
+div.home-container > a:hover {
+  transform: translate(1px, 1px);
+}
+
+/* About Page */
+div.about-container > img {
+  max-width: 100%;
+  min-height: 233px;
+  margin-bottom: 48px;
+}
+
+div.about-container > h2 {
+  margin: 0 25px;
+
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 38px;
+}
+
+div.about-container > p {
+  margin: 0 25px;
+  margin-top: 30px;
+
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+div.about-container > div.link-section {
+  background: #ffcc8d;
+  margin: 55px 25px;
+  padding: 35px;
+  border-radius: 5px;
+}
+
+div.link-section > h3 {
+  margin-bottom: 40px;
+
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+}
+
+div.link-section > a {
+  text-decoration: none;
+  background: #161616;
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 12px 22px;
+
+  transition: transform 0.2s ease-in-out;
+}
+
+div.link-section > a:hover {
+  transform: translate(1px, 1px);
+}
