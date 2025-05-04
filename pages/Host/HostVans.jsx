@@ -1,14 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
+
+import { getHostVans } from "../../api";
+import { requireAuth } from "../../utils";
+
+export async function loader({ request }) {
+  await requireAuth(request);
+  return getHostVans();
+}
 
 export default function HostVans() {
-  const [vans, setVan] = React.useState([]);
-
-  React.useEffect(() => {
-    fetch("/api/host/vans")
-      .then((res) => res.json())
-      .then((data) => setVan(data.vans));
-  }, []);
+  const vans = useLoaderData();
 
   const vanElement = vans.map((van) => {
     return (
@@ -27,7 +29,7 @@ export default function HostVans() {
   return (
     <div className="host-van-container">
       <h1>Your listed vans</h1>
-      {vans.length > 0 ? vanElement : <h1>Loading ...</h1>}
+      {vanElement}
     </div>
   );
 }

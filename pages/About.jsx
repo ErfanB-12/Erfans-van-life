@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import aboutImage from "../assets/images/aboutImage.png";
+import aboutImage from "../assets/images/about-hero.png";
 
 export function About() {
   return (

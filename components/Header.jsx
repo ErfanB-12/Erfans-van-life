@@ -1,12 +1,18 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 
+import signIcon from "../assets/images/avatar-icon.png";
+
 export default function Header() {
   const activeStyle = {
     fontWeight: "bold",
     textDecoration: "underline",
     color: "#161616",
   };
+
+  function fakeLogout() {
+    localStorage.removeItem("loggedin");
+  }
 
   return (
     <header>
@@ -34,6 +40,12 @@ export default function Header() {
         >
           Vans
         </NavLink>
+
+        <NavLink to="/signIn">
+          <img src={signIcon} alt="Sign in icon" />
+        </NavLink>
+
+        <button onClick={fakeLogout}>X</button>
       </nav>
     </header>
   );
