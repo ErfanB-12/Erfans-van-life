@@ -1,5 +1,6 @@
-import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, NavLink, useNavigation } from "react-router-dom";
+import { FiLogOut } from "react-icons/fi";
 
 import signIcon from "../assets/images/avatar-icon.png";
 
@@ -10,8 +11,17 @@ export default function Header() {
     color: "#161616",
   };
 
+  const navigation = useNavigation();
+
+  const [isLogin, setIsLogin] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsLogin(localStorage.getItem("loggedin"));
+  }, [navigation.state]);
+
   function fakeLogout() {
     localStorage.removeItem("loggedin");
+    setIsLogin(false);
   }
 
   return (
@@ -41,11 +51,17 @@ export default function Header() {
           Vans
         </NavLink>
 
-        <NavLink to="/signIn">
-          <img src={signIcon} alt="Sign in icon" />
-        </NavLink>
+        {!isLogin && (
+          <NavLink to="/signIn" onClick={localStorage.loggedin}>
+            <img src={signIcon} alt="Sign in icon" />
+          </NavLink>
+        )}
 
-        <button onClick={fakeLogout}>X</button>
+        {isLogin && (
+          <button className="logout-btn" onClick={fakeLogout}>
+            <FiLogOut className="logout-icon" />
+          </button>
+        )}
       </nav>
     </header>
   );

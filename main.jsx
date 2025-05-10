@@ -16,11 +16,10 @@ import SignIn, {
   loader as signInLoader,
   action as signInAction,
 } from "./pages/SignIn";
-// import Login from "./pages/Login";
 import VansDetail, { loader as vansDetailLoader } from "./pages/Vans/VanDetail";
 import Income from "./pages/Host/Income";
 import Reviews from "./pages/Host/Reviews";
-import Dashboard from "./pages/Host/Dashboard";
+import Dashboard, {loader as hostDashboardVansLoader} from "./pages/Host/Dashboard";
 import HostVans, { loader as hostVansLoader } from "./pages/Host/HostVans";
 import HostVanDetail, {
   loader as hostVanDetailLoader,
@@ -48,6 +47,7 @@ const router = createBrowserRouter(
       <Route
         path="vans/:id"
         element={<VansDetail />}
+        errorElement={<Error />}
         loader={vansDetailLoader}
       />
 
@@ -57,13 +57,12 @@ const router = createBrowserRouter(
         loader={signInLoader}
         action={signInAction}
       />
-      {/* <Route path="login" element={<Login />} /> */}
 
       <Route path="host" element={<HostLayout />}>
         <Route
           index
           element={<Dashboard />}
-          loader={async ({ request }) => await requireAuth(request)}
+          loader={hostDashboardVansLoader}
         />
         <Route
           path="income"
@@ -76,11 +75,17 @@ const router = createBrowserRouter(
           loader={async ({ request }) => await requireAuth(request)}
         />
 
-        <Route path="vans" element={<HostVans />} loader={hostVansLoader} />
+        <Route
+          path="vans"
+          element={<HostVans />}
+          errorElement={<Error />}
+          loader={hostVansLoader}
+        />
 
         <Route
           path="vans/:id"
           element={<HostVanDetail />}
+          errorElement={<Error />}
           loader={hostVanDetailLoader}
         >
           <Route
