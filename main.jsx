@@ -16,10 +16,16 @@ import SignIn, {
   loader as signInLoader,
   action as signInAction,
 } from "./pages/SignIn";
+import SignUp, {
+  loader as signUpLoader,
+  action as signUpAction,
+} from "./pages/SignUp";
 import VansDetail, { loader as vansDetailLoader } from "./pages/Vans/VanDetail";
 import Income from "./pages/Host/Income";
 import Reviews from "./pages/Host/Reviews";
-import Dashboard, {loader as hostDashboardVansLoader} from "./pages/Host/Dashboard";
+import Dashboard, {
+  loader as hostDashboardVansLoader,
+} from "./pages/Host/Dashboard";
 import HostVans, { loader as hostVansLoader } from "./pages/Host/HostVans";
 import HostVanDetail, {
   loader as hostVanDetailLoader,
@@ -58,12 +64,15 @@ const router = createBrowserRouter(
         action={signInAction}
       />
 
+      <Route
+        path="signup"
+        element={<SignUp />}
+        loader={signUpLoader}
+        action={signUpAction}
+      />
+
       <Route path="host" element={<HostLayout />}>
-        <Route
-          index
-          element={<Dashboard />}
-          loader={hostDashboardVansLoader}
-        />
+        <Route index element={<Dashboard />} loader={hostDashboardVansLoader} />
         <Route
           path="income"
           element={<Income />}

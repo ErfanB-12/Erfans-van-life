@@ -8,7 +8,7 @@ import {
   useNavigation,
 } from "react-router-dom";
 
-import { loginUser } from "../api";
+import { signupUser } from "../api";
 
 export function loader({ request }) {
   return new URL(request.url).searchParams.get("message");
@@ -16,32 +16,38 @@ export function loader({ request }) {
 
 export async function action({ request }) {
   const formData = await request.formData();
+  const userName = formData.get("username");
   const email = formData.get("email");
   const password = formData.get("password");
 
-  const pathname =
-    new URL(request.url).searchParams.get("redirectTo") || "/host";
   try {
-    const data = await loginUser({ email, password });
-    localStorage.setItem("loggedin", true);
+    const data = await signupUser({ userName, email, password });
 
-    return redirect(pathname);
+    return null;
   } catch (err) {
     return err;
   }
 }
 
-export default function SignIn() {
+export default function SignUp() {
   const message = useLoaderData();
   const navigation = useNavigation();
   const error = useActionData();
 
   return (
-    <section className="signin-container">
-      <h1>Sign in to your account</h1>
+    <section className="signup-container">
+      <h1>Create new account</h1>
+
       {message && <h3 className="red">{message}</h3>}
       {error && <h3 className="red">{error.message}</h3>}
       <Form method="post" replace>
+        <input
+          className="name-input"
+          name="username"
+          type="text"
+          placeholder="Username"
+          required
+        />
         <input
           className="email-input"
           name="email"
@@ -62,12 +68,12 @@ export default function SignIn() {
           className="form-submit"
           disabled={navigation.state === "submitting"}
         >
-          {navigation.state === "submitting" ? "signing in ..." : "Sign in"}
+          {navigation.state === "submitting" ? "signing up ..." : "Sign up"}
         </button>
       </Form>
 
       <p>
-        Don’t have an account? <Link to="/signup">Create one now</Link>
+        Already have an account? <Link to="/signin">Login now</Link>
       </p>
     </section>
   );
